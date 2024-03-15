@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Recipe</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        <h1>{{ object.get_author }}</h1>
+        <h2>Recipe Ingredients</h2>
+        <ul>
+            {% for ingredient in object.ingredients.all %}
+            <li>{{ ingredient.ingredient.name }} : {{ ingredient.quantity }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <a href="{% url 'login' %}">LOGIN</a>
+    {% endif %}
+</body>
+</html>

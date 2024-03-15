@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <h1>Recipe Book</h1>
+    </head>
+    <body>
+        {% if request.user.is_authenticated %}
+            <h2>Logout</h2>
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">LOGOUT</button>
+            </form>
+        {% else %}
+            <h2>Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">LOGIN</button>
+            </form>
+        {% endif %}
+    </body>
+</html>
